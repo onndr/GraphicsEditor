@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Graphics Editor</title>
+    <link href="styles.css" rel='stylesheet' type="text/css">
+</head>
+
+<body style="margin: 0px">
+    <script type="text/javascript" src="scripts/GraphicObject.js"></script>
+    <script type="text/javascript" src="scripts/Shape.js"></script>
+    <script type="text/javascript" src="scripts/Image.js"></script>
+    <script type="text/javascript" src="scripts/Line.js"></script>
+    <script type="text/javascript" src="scripts/Triangle.js"></script>
+    <script type="text/javascript" src="scripts/Rectangle.js"></script>
+    <script type="text/javascript" src="scripts/Circle.js"></script>
+    <script type="text/javascript" src="scripts/PicturesContainer.js"></script>
+    <script type="text/javascript" src="scripts/Workspace.js"></script>
+    <script type="text/javascript" src="scripts/Bin.js"></script>
+    <script type="text/javascript" src="scripts/GlobalElement.js"></script>
+
+    <script>
+        let globalWrapper = new GlobalElement(document.body);
+        let workspace = new Workspace(globalWrapper);
+        let container = new PicturesContainer(globalWrapper);
+        let bin = new Bin(globalWrapper, 'images/bin.png');
+
+        let shape = new Rectangle('#ab3ac7');
+        let line = new Line('#ab3ac7');
+        let triangle1 = new Triangle('right', '#ab3ac7');
+        let triangle2 = new Triangle('isosceles', '#ab3ac7');
+        let circle = new Circle('#ab3ac7');
+
+        container.addElement(new Img('images/red.png'));
+        container.addElement(new Img('images/yellow.png'));
+        container.addElement(new Img('images/black.png'));
+        container.addElement(new Img('images/blue.png'));
+
+        container.addElement(shape);
+        container.addElement(line);
+        container.addElement(triangle1);
+        container.addElement(triangle2);
+        container.addElement(circle);
+    </script>
+</body>
+
+</html

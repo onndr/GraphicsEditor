@@ -1,0 +1,104 @@
+/*#globalDiv{
+	position: relative;
+}
+
+.wrapper{
+	position: relative;
+	padding: 10px;
+}
+
+.right{
+	vertical-align: top; 
+}
+
+#imageContainer{
+	height: 400px; 
+	width: 300px; 
+	background-color: #f2d6a5; 
+	border: solid 3px red; 
+	vertical-align: top; 
+	display: inline-block; 
+	margin-left: 30px
+}
+
+#imageContainer div{
+	width: 100px;
+	height: 100px;
+	position: relative;
+	margin: 15px;
+	border: 0.1px solid;
+}
+*/
+
+
+.bin{
+	display: inline;
+	position: absolute; 
+	left: 1636px; 
+	top: 692px;
+	width: 254px;
+	border: solid 3px red; 
+}
+
+.bin img{
+	padding: 2px;
+}
+
+.wrapperDiv .wrappedImage{
+	width: inherit;
+	height: inherit;
+}
+
+.wrapperDiv{
+	display:inline-block;
+	margin: 10px;
+	width: 100px;
+	height: 100px;
+	border: 2px dashed;
+	left: auto;
+	top: auto;
+}
+
+.workspace{
+	height: 940px; 
+	width: 1600px; 
+	background-color: white; 
+	border: solid 3px red; 
+	vertical-align: top; 
+	display: inline-block;
+	position: relative;
+}
+
+.pictureFromContainer{
+	position: absolute;
+	margin: 15px;
+}
+
+.globalWrapper{
+	position: absolute;
+	padding: 10px;
+	width: 1900px;
+}
+
+.generalContainer{
+	height: 650px; 
+	width: 250px; 
+	padding: 0 0 0 5px;
+	background-color: #f2d6a5; 
+	border: solid 3px red; 
+	display: inline-block;
+	margin-left: 20px;
+}
+
+.currentTarget{
+	display: block;
+	width: 100px;
+	height: 100px;
+	border: 2px solid green;
+	position: absolute;
+}
+
+.currentTarget .wrappedImage{
+	width: inherit;
+	height: inherit;
+}
