@@ -17,6 +17,10 @@ class GraphicObject {
         this.selfElement.isSelected = false;
         this.selfElement.style.border = 'none';
     }
+    setSize(newWidth, newHeight){
+        this.selfElement.style.width = newWidth + 'px';
+        this.selfElement.style.height = newHeight + 'px';
+    }
     rotate = (value) => {
         const getAngle = (string) => {
             if (!string) return 0;
@@ -35,5 +39,46 @@ class GraphicObject {
             }
         };
         this.selfElement.style.transform = `rotate(${getAngle(this.selfElement.style.transform) + value}deg)`;
+    }
+    setIndents = (newLeftIndent, newTopIndent) => {
+        this.selfElement.style.left = `${newLeftIndent}px`;
+        this.selfElement.style.top = `${newTopIndent}px`;
+    }
+    getIndents = () => {
+        return {
+            left: parseInt(this.selfElement.style.left),
+            top: parseInt(this.selfElement.style.top)
+        };
+    }
+    setCursor = (newCursor) => {
+        this.selfElement.style.cursor = newCursor;
+    }
+    removeSelfElement = () => {
+        this.selfElement.remove();
+    }
+    setMode(mode, value, othersModeValue = true){
+        switch (mode){
+            case 'selected':
+                this.isSelected = value;
+                if(!othersModeValue){
+                    this.isMoving = false;
+                    this.isResizing = false;
+                }
+                break;
+            case 'moving':
+                this.isMoving = value;
+                if(!othersModeValue){
+                    this.isSelected = false;
+                    this.isResizing = false;
+                }
+                break;
+            case 'resizing':
+                this.isResizing = value;
+                if(!othersModeValue){
+                    this.isMoving = false;
+                    this.isSelected = false;
+                }
+                break;
+        }
     }
 }

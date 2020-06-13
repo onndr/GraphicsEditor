@@ -1,36 +1,3 @@
-/*#globalDiv{
-	position: relative;
-}
-
-.wrapper{
-	position: relative;
-	padding: 10px;
-}
-
-.right{
-	vertical-align: top; 
-}
-
-#imageContainer{
-	height: 400px; 
-	width: 300px; 
-	background-color: #f2d6a5; 
-	border: solid 3px red; 
-	vertical-align: top; 
-	display: inline-block; 
-	margin-left: 30px
-}
-
-#imageContainer div{
-	width: 100px;
-	height: 100px;
-	position: relative;
-	margin: 15px;
-	border: 0.1px solid;
-}
-*/
-
-
 .bin{
 	display: inline;
 	position: absolute; 
@@ -91,11 +58,11 @@
 }
 
 .currentTarget{
+	position: absolute;
 	display: block;
 	width: 100px;
 	height: 100px;
 	border: 2px solid green;
-	position: absolute;
 }
 
 .currentTarget .wrappedImage{

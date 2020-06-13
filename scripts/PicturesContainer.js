@@ -37,7 +37,10 @@ class PicturesContainer {
     }
     removeElement(index) {
         if (!this.elements[index]) return;
-        this.elements[index].selfElement.remove();
+        this.elements[index].removeSelfElement();
         this.elements.splice(index, 1);
+    }
+    removeSelfElement = () => {
+        this.selfElement.remove();
     }
 }

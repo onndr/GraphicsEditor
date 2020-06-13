@@ -11,11 +11,9 @@ class GlobalElement {
     }
     setTarget(element, style) {
         this.target = element;
-        element.selfElement.className = 'currentTarget';
-        element.selfElement.style.position = 'absolute';
-        element.selfElement.style.left = (style[0] + 13) + 'px';
-        element.selfElement.style.top = (style[1] + 13) + 'px';
-        this.selfElement.append(element.selfElement);
+        this.target.selfElement.className = 'currentTarget';
+        this.target.setIndents(style[0] + 13, style[1] + 13);
+        this.selfElement.append(this.target.selfElement);
     }
     addElement = (element) => {
         element.constructor.name === 'Workspace' ?
@@ -25,19 +23,19 @@ class GlobalElement {
         this.selfElement.append(element.selfElement);
     }
     removeTarget(index = null) {
-        this.pictures[index].selfElement.remove();
+        this.pictures[index].removeSelfElement();
         this.target = undefined;
         this.pictures.splice(index, 1);
     }
     removeElement(element) {
         if (element.constructor.name === 'Workspace') {
-            this.workspace.selfElement.remove();
+            this.workspace.removeSelfElement();
             this.workspace = undefined;
         } else if (element.constructor.name === 'PicturesContainer') {
-            this.container.selfElement.remove();
+            this.container.removeSelfElement();
             this.container = undefined;
         } else if (element.constructor.name === 'Bin') {
-            this.bin.selfElement.remove();
+            this.bin.removeSelfElement();
             this.bin = undefined;
         }
     }
@@ -53,8 +51,8 @@ class GlobalElement {
         if (event.target.tagName !== 'IMG' && event.target.tagName !== 'CANVAS') {
             this.workspace.setTarget('none');
             this.container.setTarget('none');
-            if (this.target) this.target.selfElement.style.cursor = 'default';
-            if (this.resizingTarget) this.resizingTarget.selfElement.style.cursor = 'default';
+            if (this.target) this.target.setCursor('default');
+            if (this.resizingTarget) this.resizingTarget.setCursor('default');
             this.target = undefined;
             this.resizingTarget = undefined;
         } else if (event.path.includes(this.workspace?.selfElement)) {
@@ -70,13 +68,10 @@ class GlobalElement {
         if (event.x > this.workspace.selfElement.offsetLeft && event.x < this.workspace.selfElement.offsetLeft + this.workspace.selfElement.offsetWidth
             && event.y > this.workspace.selfElement.offsetTop && event.y < this.workspace.selfElement.offsetTop + this.workspace.selfElement.offsetHeight
             && this.target) {
-            this.target.selfElement.style.cursor = 'default';
-            this.target.isMoving = false;
-            this.target.isResizing = false;
-            this.target.isSelected = true;
+            this.target.setCursor('default');
+            this.target.setMode('selected', true, false);
             this.workspace.addElement(this.target);
             this.target = undefined;
-
         } else if (event.x > this.bin.selfElement.offsetLeft && event.x < this.bin.selfElement.offsetLeft + this.bin.selfElement.offsetWidth
             && event.y > this.bin.selfElement.offsetTop && event.y < this.bin.selfElement.offsetTop + this.bin.selfElement.offsetHeight
             && this.target) {
@@ -93,10 +88,12 @@ class GlobalElement {
     onMove = (event) => {
         event.preventDefault();
         if (this.target && event.which === 1 && !this.target.isResizing) {
-            this.target.isMoving = true;
-            this.target.selfElement.style.left = parseInt(this.target.selfElement.style.left) + event.movementX + 'px';
-            this.target.selfElement.style.top = parseInt(this.target.selfElement.style.top) + event.movementY + 'px';
-            this.target.selfElement.style.cursor = 'move';
+            this.target.setMode('moving', true);
+            this.target.setIndents(
+                this.target.getIndents().left + event.movementX,
+                this.target.getIndents().top + event.movementY
+            );
+            this.target.setCursor('move');
         }
     }
     onResize = (event) => {
@@ -105,22 +102,24 @@ class GlobalElement {
             if (this.isRightResizingPosition(event.target.parentNode, event.offsetX, event.offsetY) || this.resizingTarget) {
                 if (!this.resizingTarget) this.resizingTarget = event.target.parentNode.obj;
                 if (this.isRightResizingPosition(this.resizingTarget.selfElement, event.offsetX, event.offsetY) || this.resizingTarget.isResizing) {
-                    this.resizingTarget.selfElement.style.cursor = 'nwse-resize';
+                    this.resizingTarget.setCursor('nwse-resize');
                     if (event.which === 1) {
-                        this.resizingTarget.isResizing = true;
-                        this.resizingTarget.selfElement.style.width = event.x - Number.parseInt(this.resizingTarget.selfElement.style.left) + 'px';
-                        this.resizingTarget.selfElement.style.height = event.y - Number.parseInt(this.resizingTarget.selfElement.style.top) + 'px';
+                        this.resizingTarget.setMode('resizing', true)
+                        this.resizingTarget.setSize(
+                            event.x - this.resizingTarget.getIndents().left,
+                            event.y - this.resizingTarget.getIndents().top
+                        );
                     } else if (event.which === 0) {
-                        this.resizingTarget.isResizing = false;
+                        this.resizingTarget.setMode('resizing', false);
                     }
-                }
+                } else this.resizingTarget.setCursor('default');
             }
         }
     }
     rotateTargetElement = (event) => {
         if (event.which !== 97 && event.which !== 100) return;
         if (this.workspace.target) {
-            this.workspace.rotateTarget(event.which)
+            this.workspace.rotateTarget(event.which);
         }
     }
     isRightResizingPosition = (target, cursorX, cursorY) => {
