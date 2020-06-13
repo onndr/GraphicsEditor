@@ -1,2 +1,2 @@
 # GraphicsEditor
- My littile studying project
+ My little studying project
