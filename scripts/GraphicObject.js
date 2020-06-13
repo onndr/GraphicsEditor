@@ -50,6 +50,12 @@ class GraphicObject {
             top: parseInt(this.selfElement.style.top)
         };
     }
+    getSize = () => {
+        return {
+            width: parseInt(this.selfElement.style.width),
+            height: parseInt(this.selfElement.style.height)
+        };
+    }
     setCursor = (newCursor) => {
         this.selfElement.style.cursor = newCursor;
     }

@@ -1,34 +1,26 @@
-class Triangle extends GraphicObject {
+class Triangle extends Shape {
     constructor(kind, color = 'red') {
-        super();
-        this.color = color;
+        super(color);
         this.kind = kind;
-        this.createSelf(kind);
+        this.drawShape(this.canvas.width, this.canvas.height);
     }
-    createSelf = (kind) => {
-        this.selfElement = document.createElement('div');
-        this.selfElement.className = 'wrapperDiv';
-        let canvas = document.createElement('canvas');
-        canvas.className = 'wrappedImage';
-        canvas.width = 100;
-        canvas.height = 100;
-        this.drawingContext = canvas.getContext('2d');
+    drawShape(width, height){
+        this.drawingContext = this.canvas.getContext('2d');
         this.drawingContext.beginPath();
         this.drawingContext.strokeStyle = this.color;
         this.drawingContext.lineWidth = 3;
-        if (kind === 'isosceles') {
-            this.drawingContext.moveTo(49, 0);
-            this.drawingContext.lineTo(99, 99);
-            this.drawingContext.lineTo(0, 99);
-            this.drawingContext.lineTo(49, 0);
-        } else if (kind === 'right') {
-            this.drawingContext.moveTo(0, 0);
-            this.drawingContext.lineTo(99, 99);
-            this.drawingContext.lineTo(0, 99);
-            this.drawingContext.lineTo(0, 0);
+        if (this.kind === 'isosceles') {
+            this.drawingContext.moveTo(width/2, 1);
+            this.drawingContext.lineTo(width-1, height-1);
+            this.drawingContext.lineTo(1, height-1);
+            this.drawingContext.lineTo(width/2, 1);
+        } else if (this.kind === 'right') {
+            this.drawingContext.moveTo(1, 1);
+            this.drawingContext.lineTo(width-1, height-1);
+            this.drawingContext.lineTo(1, height-1);
+            this.drawingContext.lineTo(1, 1);
         }
         this.drawingContext.stroke();
-        this.selfElement.append(canvas);
     }
     isRightPosition(cursorX, cursorY) {
         if (Math.abs(cursorY - this.selfElement.offsetHeight) <= 7 && cursorX) return true;
