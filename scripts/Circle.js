@@ -21,13 +21,10 @@ class Circle extends GraphicObject {
         this.selfElement.append(canvas);
     }
     isRightPosition(cursorX, cursorY) {
-        let radiusLength = Math.sqrt((this.selfElement.offsetWidth/2)**2);
+        let radiusLengthX = Math.sqrt((this.selfElement.offsetWidth/2)**2);
+        let radiusLengthY = Math.sqrt((this.selfElement.offsetHeight/2)**2);
         let length = Math.sqrt((cursorX-this.selfElement.offsetWidth/2)**2 + (cursorY-this.selfElement.offsetHeight/2)**2);
-        if(Math.abs(length-radiusLength) < 5)return true;
-       /* if (cursorY <= 10 && Math.abs(cursorX - this.selfElement.offsetWidth / 2) <= 10) return true;
-        if (cursorX <= 10 && Math.abs(cursorY - this.selfElement.offsetHeight / 2) <= 10) return true;
-        if (Math.abs(cursorX - this.selfElement.offsetWidth) <= 10 && Math.abs(cursorY - this.selfElement.offsetHeight / 2) <= 10) return true;
-        if (Math.abs(cursorY - this.selfElement.offsetHeight) <= 10 && Math.abs(cursorX - this.selfElement.offsetWidth / 2) <= 10) return true;*/
+        if(Math.abs(length-radiusLengthX) < 5 || Math.abs(length-radiusLengthY) < 5)return true;
         return false;
     }
 }
