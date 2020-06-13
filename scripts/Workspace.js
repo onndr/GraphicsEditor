@@ -44,4 +44,8 @@ class Workspace extends PicturesContainer {
         this.target = element;
         this.selfElement.append(element.selfElement);
     }
+    rotateTarget = (keyCode) => {
+        if(!this.target)return;
+        keyCode === 97? this.target.rotate(-2): this.target.rotate(2);
+    }
 }

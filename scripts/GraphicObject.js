@@ -17,4 +17,23 @@ class GraphicObject {
         this.selfElement.isSelected = false;
         this.selfElement.style.border = 'none';
     }
+    rotate = (value) => {
+        const getAngle = (string) => {
+            if (!string) return 0;
+            let numberString = '';
+            let isNumber = false;
+            for (let i = 0; i < string.length; i++) {
+                if (string[i] === 'd') {
+                    return Number(numberString);
+                }
+                if (isNumber) {
+                    numberString += string[i];
+                }
+                if (string[i] === '(') {
+                    isNumber = true;
+                }
+            }
+        };
+        this.selfElement.style.transform = `rotate(${getAngle(this.selfElement.style.transform) + value}deg)`;
+    }
 }

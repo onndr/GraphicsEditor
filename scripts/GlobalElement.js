@@ -46,7 +46,7 @@ class GlobalElement {
         this.selfElement.addEventListener('mousemove', this.onMove);
         this.selfElement.addEventListener('mousemove', this.onResize);
         this.selfElement.addEventListener('mouseup', this.onMouseUp);
-        document.body.addEventListener('keypress', this.rotateTarget);
+        document.body.addEventListener('keypress', this.rotateTargetElement);
     }
     onMouseDown = (event) => {
         event.preventDefault();
@@ -117,31 +117,10 @@ class GlobalElement {
             }
         }
     }
-    rotateTarget = (event) => {
-        const getAngle = (string) => {
-            if (string === '') return 0;
-            if (!string) return;
-            let numberString = '';
-            let isNumber = false;
-            for (let i = 0; i < string.length; i++) {
-                if (string[i] === 'd') {
-                    return Number(numberString);
-                }
-                if (isNumber) {
-                    numberString += string[i];
-                }
-                if (string[i] === '(') {
-                    isNumber = true;
-                }
-            }
-            return Number(numberString);
-        };
+    rotateTargetElement = (event) => {
         if (event.which !== 97 && event.which !== 100) return;
-        if (event.which === 97 && this.workspace.target) {
-            this.workspace.target.selfElement.style.transform = `rotate(${getAngle(this.workspace.target.selfElement.style.transform) - 2}deg)`;
-        }
-        if (event.which === 100 && this.workspace.target) {
-            this.workspace.target.selfElement.style.transform = `rotate(${getAngle(this.workspace.target.selfElement.style.transform) + 2}deg)`;
+        if (this.workspace.target) {
+            this.workspace.rotateTarget(event.which)
         }
     }
     isRightResizingPosition = (target, cursorX, cursorY) => {
