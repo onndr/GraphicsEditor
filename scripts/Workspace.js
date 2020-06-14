@@ -19,33 +19,38 @@ class Workspace extends PicturesContainer {
             case 'none':
                 break;
             default:
-                if (this.elements.includes(event.target.parentNode.obj)) {
-                    this.target = event.target.parentNode.obj;
-                    if (this.target.constructor.name !== 'Img') {
-                        if (this.target.isRightPosition(event.offsetX, event.offsetY)) {
-                            this.target.focus();
-                            this.parent.setTarget(this.target, [this.target.selfElement.offsetLeft, this.target.selfElement.offsetTop]);
-                            return;
+                let underCursorElements = this.elements.filter(
+                    el => {
+                        if (event.x - el.selfElement.offsetLeft >= 0
+                            && event.x - 15 <= (el.selfElement.offsetLeft + el.selfElement.offsetWidth)
+                            && event.y - el.selfElement.offsetTop >= 0
+                            && event.y - 15 <= (el.selfElement.offsetTop + el.selfElement.offsetHeight)) {
+                            return true;
                         }
-                    } else {
-                        this.target.focus();
-                        this.parent.setTarget(this.target, [this.target.selfElement.offsetLeft, this.target.selfElement.offsetTop]);
+                    }
+                );
+                for(let i = underCursorElements.length-1; i >= 0; i--){
+                    let el = underCursorElements[i];
+                    if (el.isRightPosition(false, event.x-15, event.y-15)) {
+                        el.focus();
+                        this.elements.splice(this.elements.indexOf(el), 1);
+                        this.parent.setTarget(el, [el.selfElement.offsetLeft, el.selfElement.offsetTop]);
+                        return;
                     }
                 }
                 break;
         }
     }
-    addElement(element) {
-        element.setParent(this, this.elements.length);
-        this.elements.push(element);
-        this.parent.pictures.push(element);
-        element.selfElement.style.left = parseInt(element.selfElement.style.left) - 13 + 'px';
-        element.selfElement.style.top = parseInt(element.selfElement.style.top) - 13 + 'px';
+    addElement(element, index) {
+        element.setParent(this, index);
         this.target = element;
-        this.selfElement.append(element.selfElement);
+        this.elements.push(this.target);
+        this.parent.pictures.push(this.target);
+        this.target.setIndents(this.target.getIndents().left - 13, this.target.getIndents().top - 13);
+        this.selfElement.append(this.target.selfElement);
     }
     rotateTarget = (keyCode) => {
-        if(!this.target)return;
-        keyCode === 97? this.target.rotate(-2): this.target.rotate(2);
+        if (!this.target) return;
+        keyCode === 97 ? this.target.rotate(-2) : this.target.rotate(2);
     }
 }

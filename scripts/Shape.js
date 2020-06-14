@@ -21,4 +21,16 @@ class Shape extends GraphicObject{
         this.canvas.height = newHeight;
         this.drawShape(newWidth, newHeight);
     }
+    adaptCoords(isOffset, cursorX, cursorY){
+        let x;
+        let y;
+        if (!isOffset) {
+            x = cursorX - this.selfElement.offsetLeft;
+            y = cursorY - this.selfElement.offsetTop;
+        } else {
+            x = cursorX;
+            y = cursorY;
+        }
+        return {x, y};
+    }
 }

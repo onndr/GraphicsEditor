@@ -70,7 +70,7 @@ class GlobalElement {
             && this.target) {
             this.target.setCursor('default');
             this.target.setMode('selected', true, false);
-            this.workspace.addElement(this.target);
+            this.workspace.addElement(this.target, this.target.index);
             this.target = undefined;
         } else if (event.x > this.bin.selfElement.offsetLeft && event.x < this.bin.selfElement.offsetLeft + this.bin.selfElement.offsetWidth
             && event.y > this.bin.selfElement.offsetTop && event.y < this.bin.selfElement.offsetTop + this.bin.selfElement.offsetHeight

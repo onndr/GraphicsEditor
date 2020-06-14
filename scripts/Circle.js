@@ -12,12 +12,13 @@ class Circle extends Shape {
         this.drawingContext.arc(width/2, height/2, width >= height? height/2 - 1: width/2 - 1, 0, 2 * Math.PI);
         this.drawingContext.stroke();
     }
-    isRightPosition(cursorX, cursorY) {
+    isRightPosition(isOffset, cursorX, cursorY) {
+        let {x, y} = this.adaptCoords(isOffset, cursorX, cursorY);
         let radiusLengthX = Math.sqrt((this.selfElement.offsetWidth/2)**2);
         let radiusLengthY = Math.sqrt((this.selfElement.offsetHeight/2)**2);
-        let length = Math.sqrt((cursorX-this.selfElement.offsetWidth/2)**2 + (cursorY-this.selfElement.offsetHeight/2)**2);
+        let length = Math.sqrt((x-this.selfElement.offsetWidth/2)**2 + (y-this.selfElement.offsetHeight/2)**2);
         if(Math.abs(length-radiusLengthX) < 5 || Math.abs(length-radiusLengthY) < 5)return true;
-        if(Math.abs(cursorX-this.getSize().width) <= 7 && Math.abs(cursorY-this.getSize().height) <= 7)return true;
+        if(Math.abs(x-this.getSize().width) <= 7 && Math.abs(y-this.getSize().height) <= 7)return true;
         return false;
     }
 }

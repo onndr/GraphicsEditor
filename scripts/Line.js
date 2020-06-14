@@ -12,9 +12,10 @@ class Line extends Shape {
         this.drawingContext.lineTo(width, height);
         this.drawingContext.stroke();
     }
-    isRightPosition(cursorX, cursorY) {
+    isRightPosition(isOffset, cursorX, cursorY) {
+        let {x, y} = this.adaptCoords(isOffset, cursorX, cursorY);
         let k = this.selfElement.offsetHeight / this.selfElement.offsetWidth;
-        if (cursorX * k >= cursorY - 7 && cursorX * k <= cursorY + 7) {
+        if (x * k >= y - 7 && x * k <= y + 7) {
             return true;
         } else return false;
     }
