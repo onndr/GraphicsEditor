@@ -4,7 +4,7 @@ class Rectangle extends Shape {
         this.drawShape(this.canvas.width, this.canvas.height);
     }
     isRightPosition(isOffset, cursorX, cursorY) {
-        let {x, y} = this.adaptCoords(isOffset, cursorX, cursorY);
+        let { x, y } = this.adaptCoords(isOffset, cursorX, cursorY);
         if (Math.abs(x) <= 5 && y) return true;
         if (Math.abs(y) <= 5 && x) return true;
         if (Math.abs(x - this.selfElement.offsetWidth) <= 5 && Math.abs(y)) return true;

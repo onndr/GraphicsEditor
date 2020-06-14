@@ -3,7 +3,7 @@ class Line extends Shape {
         super(color);
         this.drawShape(this.canvas.width, this.canvas.height);
     }
-    drawShape(width, height){
+    drawShape(width, height) {
         this.drawingContext = this.canvas.getContext('2d');
         this.drawingContext.beginPath();
         this.drawingContext.strokeStyle = this.color;
@@ -13,7 +13,7 @@ class Line extends Shape {
         this.drawingContext.stroke();
     }
     isRightPosition(isOffset, cursorX, cursorY) {
-        let {x, y} = this.adaptCoords(isOffset, cursorX, cursorY);
+        let { x, y } = this.adaptCoords(isOffset, cursorX, cursorY);
         let k = this.selfElement.offsetHeight / this.selfElement.offsetWidth;
         if (x * k >= y - 7 && x * k <= y + 7) {
             return true;

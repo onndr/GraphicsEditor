@@ -29,9 +29,9 @@ class Workspace extends PicturesContainer {
                         }
                     }
                 );
-                for(let i = underCursorElements.length-1; i >= 0; i--){
+                for (let i = underCursorElements.length - 1; i >= 0; i--) {
                     let el = underCursorElements[i];
-                    if (el.isRightPosition(false, event.x-15, event.y-15)) {
+                    if (el.isRightPosition(false, event.x - 15, event.y - 15)) {
                         el.focus();
                         this.elements.splice(this.elements.indexOf(el), 1);
                         this.parent.setTarget(el, [el.selfElement.offsetLeft, el.selfElement.offsetTop]);

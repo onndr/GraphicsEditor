@@ -17,7 +17,7 @@ class GraphicObject {
         this.selfElement.isSelected = false;
         this.selfElement.style.border = 'none';
     }
-    setSize(newWidth, newHeight){
+    setSize(newWidth, newHeight) {
         this.selfElement.style.width = newWidth + 'px';
         this.selfElement.style.height = newHeight + 'px';
     }
@@ -62,25 +62,25 @@ class GraphicObject {
     removeSelfElement = () => {
         this.selfElement.remove();
     }
-    setMode(mode, value, othersModeValue = true){
-        switch (mode){
+    setMode(mode, value, othersModeValue = true) {
+        switch (mode) {
             case 'selected':
                 this.isSelected = value;
-                if(!othersModeValue){
+                if (!othersModeValue) {
                     this.isMoving = false;
                     this.isResizing = false;
                 }
                 break;
             case 'moving':
                 this.isMoving = value;
-                if(!othersModeValue){
+                if (!othersModeValue) {
                     this.isSelected = false;
                     this.isResizing = false;
                 }
                 break;
             case 'resizing':
                 this.isResizing = value;
-                if(!othersModeValue){
+                if (!othersModeValue) {
                     this.isMoving = false;
                     this.isSelected = false;
                 }

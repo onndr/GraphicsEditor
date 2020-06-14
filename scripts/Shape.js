@@ -1,4 +1,4 @@
-class Shape extends GraphicObject{
+class Shape extends GraphicObject {
     constructor(color = 'red') {
         super();
         this.color = color;
@@ -13,7 +13,7 @@ class Shape extends GraphicObject{
         this.canvas.height = 100;
         this.selfElement.append(this.canvas);
     }
-    setSize(newWidth, newHeight){
+    setSize(newWidth, newHeight) {
         this.drawingContext.clearRect(0, 0, this.getSize().width, this.getSize().height);
         this.selfElement.style.width = newWidth + 'px';
         this.selfElement.style.height = newHeight + 'px';
@@ -21,7 +21,7 @@ class Shape extends GraphicObject{
         this.canvas.height = newHeight;
         this.drawShape(newWidth, newHeight);
     }
-    adaptCoords(isOffset, cursorX, cursorY){
+    adaptCoords(isOffset, cursorX, cursorY) {
         let x;
         let y;
         if (!isOffset) {
@@ -31,6 +31,6 @@ class Shape extends GraphicObject{
             x = cursorX;
             y = cursorY;
         }
-        return {x, y};
+        return { x, y };
     }
 }

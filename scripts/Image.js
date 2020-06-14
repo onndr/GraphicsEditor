@@ -13,7 +13,7 @@ class Img extends GraphicObject {
         image.src = source;
         this.selfElement.append(image);
     }
-    isRightPosition(x, y){
+    isRightPosition(x, y) {
         return true;
     }
 }

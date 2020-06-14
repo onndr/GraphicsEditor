@@ -11,7 +11,7 @@ class Bin {
         this.selfElement.append(binImage);
         this.parent.addElement(this);
     }
-    removeSelfElement(){
+    removeSelfElement() {
         this.selfElement.remove();
     }
 }

@@ -23,7 +23,7 @@ class Triangle extends Shape {
         this.drawingContext.stroke();
     }
     isRightPosition(isOffset, cursorX, cursorY) {
-        let {x, y} = this.adaptCoords(isOffset, cursorX, cursorY);
+        let { x, y } = this.adaptCoords(isOffset, cursorX, cursorY);
         if (Math.abs(y - this.selfElement.offsetHeight) <= 7 && x) return true;
         if (this.kind === 'isosceles') {
             let k = this.selfElement.offsetHeight / (this.selfElement.offsetWidth / 2);
