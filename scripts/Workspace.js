@@ -19,6 +19,15 @@ class Workspace extends PicturesContainer {
             case 'none':
                 break;
             default:
+                if(this.elements.includes(event.target?.parentNode?.obj) && event.target?.parentNode?.obj?.isRotated){
+                    let el = event.target.parentNode.obj;
+                    if (el.isRightPosition(true, event.offsetX, event.offsetY)) {
+                        el.focus();
+                        this.elements.splice(this.elements.indexOf(el), 1);
+                        this.parent.setTarget(el, [el.selfElement.offsetLeft, el.selfElement.offsetTop]);
+                        return;
+                    }
+                }
                 let underCursorElements = this.elements.filter(
                     el => {
                         if (event.x - el.selfElement.offsetLeft >= 0

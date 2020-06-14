@@ -39,6 +39,7 @@ class GraphicObject {
             }
         };
         this.selfElement.style.transform = `rotate(${getAngle(this.selfElement.style.transform) + value}deg)`;
+        getAngle(this.selfElement.style.transform) === 0?this.isRotated = false:this.isRotated = true;
     }
     setIndents = (newLeftIndent, newTopIndent) => {
         this.selfElement.style.left = `${newLeftIndent}px`;
