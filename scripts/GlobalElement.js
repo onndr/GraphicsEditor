@@ -55,10 +55,10 @@ class GlobalElement {
             if (this.resizingTarget) this.resizingTarget.setCursor('default');
             this.target = undefined;
             this.resizingTarget = undefined;
-        } else if (event.path.includes(this.workspace?.selfElement)) {
+        } else if (event.composedPath().includes(this.workspace?.selfElement)) {
             this.workspace.setTarget(event);
             this.container.setTarget('none');
-        } else if (event.path.includes(this.container?.selfElement)) {
+        } else if (event.composedPath().includes(this.container?.selfElement)) {
             this.container.setTarget(event);
             this.workspace.setTarget('none');
         }
