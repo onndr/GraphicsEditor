@@ -1,60 +1,52 @@
-.bin{
-	display: inline;
-	position: absolute; 
-	left: 1636px; 
-	top: 692px;
-	width: 254px;
+.globalWrapper{
+	display: -webkit-flex;
+	display: flex;
+	margin: 5px;
+	height: ;
+}
+
+.workspace{
+	background-color: white; 
+	border: solid 3px red; 
+	flex: 6;
+	min-width: 500px;
+}
+
+.right{
+	flex: 1;
+	display: grid;
+	grid-template-rows: 2.7fr 1fr;
+	grid-template-columns: 1fr;
+	margin: 0 0 0 5px;
+	justify-content: center;
+	display: grid;
+}
+
+.generalContainer{
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	background-color: #f2d6a5; 
 	border: solid 3px red; 
 }
 
-.bin img{
-	padding: 2px;
-}
-
-.wrapperDiv .wrappedImage{
-	width: inherit;
-	height: inherit;
+.bin{
+	display: flex;
+	margin: 5px 0 0 0;
+	justify-content: center;
+	border: solid 3px red; 
 }
 
 .wrapperDiv{
 	display:inline-block;
 	margin: 10px;
+	border: 2px dashed;
 	width: 100px;
 	height: 100px;
-	border: 2px dashed;
-	left: auto;
-	top: auto;
 }
 
-.workspace{
-	height: 940px; 
-	width: 1600px; 
-	background-color: white; 
-	border: solid 3px red; 
-	vertical-align: top; 
-	display: inline-block;
-	position: relative;
-}
-
-.pictureFromContainer{
-	position: absolute;
-	margin: 15px;
-}
-
-.globalWrapper{
-	position: absolute;
-	padding: 10px;
-	width: 1900px;
-}
-
-.generalContainer{
-	height: 650px; 
-	width: 250px; 
-	padding: 0 0 0 5px;
-	background-color: #f2d6a5; 
-	border: solid 3px red; 
-	display: inline-block;
-	margin-left: 20px;
+.wrappedImage{
+	width: inherit;
+	height: inherit;
 }
 
 .currentTarget{
@@ -62,10 +54,6 @@
 	display: block;
 	width: 100px;
 	height: 100px;
-	border: 2px solid green;
+	border: 0.5px solid green;
 }
 
-.currentTarget .wrappedImage{
-	width: inherit;
-	height: inherit;
-}

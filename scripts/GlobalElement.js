@@ -12,15 +12,25 @@ class GlobalElement {
     setTarget(element, style) {
         this.target = element;
         this.target.selfElement.className = 'currentTarget';
-        this.target.setIndents(style[0] + 13, style[1] + 13);
+        this.target.setIndents(style[0], style[1]);
         this.selfElement.append(this.target.selfElement);
     }
     addElement = (element) => {
-        element.constructor.name === 'Workspace' ?
-            this.workspace = element : element.constructor.name === 'PicturesContainer' ?
-                this.container = element : this.bin = element
-
-        this.selfElement.append(element.selfElement);
+        if(element.constructor.name === 'Workspace'){
+            this.workspace = element;
+            this.selfElement.append(element.selfElement);
+            return;
+        } else if (element.constructor.name === 'PicturesContainer'){
+            this.container = element;
+        } else if (element.constructor.name === 'Bin'){
+            this.bin = element;
+        }
+        if(!this.rightEl){
+            this.rightEl = document.createElement('div');
+            this.rightEl.className = 'right';
+            this.selfElement.append(this.rightEl);
+        }
+        this.rightEl.append(element.selfElement);
     }
     removeTarget(index = null) {
         this.pictures[index].removeSelfElement();

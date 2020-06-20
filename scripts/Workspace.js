@@ -19,31 +19,31 @@ class Workspace extends PicturesContainer {
             case 'none':
                 break;
             default:
-                if(this.elements.includes(event.target?.parentNode?.obj) && event.target?.parentNode?.obj?.isRotated){
+                if (this.elements.includes(event.target?.parentNode?.obj) && event.target?.parentNode?.obj?.isRotated) {
                     let el = event.target.parentNode.obj;
                     if (el.isRightPosition(true, event.offsetX, event.offsetY)) {
                         el.focus();
                         this.elements.splice(this.elements.indexOf(el), 1);
-                        this.parent.setTarget(el, [el.selfElement.offsetLeft, el.selfElement.offsetTop]);
+                        this.parent.setTarget(el, [el.getIndents().left, el.getIndents().top]);
                         return;
                     }
                 }
                 let underCursorElements = this.elements.filter(
                     el => {
                         if (event.x - el.selfElement.offsetLeft >= 0
-                            && event.x - 15 <= (el.selfElement.offsetLeft + el.selfElement.offsetWidth)
+                            && event.x <= (el.selfElement.offsetLeft + el.selfElement.offsetWidth)
                             && event.y - el.selfElement.offsetTop >= 0
-                            && event.y - 15 <= (el.selfElement.offsetTop + el.selfElement.offsetHeight)) {
+                            && event.y <= (el.selfElement.offsetTop + el.selfElement.offsetHeight)) {
                             return true;
                         }
                     }
                 );
                 for (let i = underCursorElements.length - 1; i >= 0; i--) {
                     let el = underCursorElements[i];
-                    if (el.isRightPosition(false, event.x - 15, event.y - 15)) {
+                    if (el.isRightPosition(false, event.x, event.y)) {
                         el.focus();
                         this.elements.splice(this.elements.indexOf(el), 1);
-                        this.parent.setTarget(el, [el.selfElement.offsetLeft, el.selfElement.offsetTop]);
+                        this.parent.setTarget(el, [el.getIndents().left, el.getIndents().top]);
                         return;
                     }
                 }
@@ -55,7 +55,7 @@ class Workspace extends PicturesContainer {
         this.target = element;
         this.elements.push(this.target);
         this.parent.pictures.push(this.target);
-        this.target.setIndents(this.target.getIndents().left - 13, this.target.getIndents().top - 13);
+        this.target.setIndents(this.target.getIndents().left, this.target.getIndents().top);
         this.selfElement.append(this.target.selfElement);
     }
     rotateTarget = (keyCode) => {
