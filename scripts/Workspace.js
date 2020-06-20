@@ -57,6 +57,7 @@ class Workspace extends PicturesContainer {
         this.parent.pictures.push(this.target);
         this.target.setIndents(this.target.getIndents().left, this.target.getIndents().top);
         this.selfElement.append(this.target.selfElement);
+        element.focus();
     }
     rotateTarget = (keyCode) => {
         if (!this.target) return;

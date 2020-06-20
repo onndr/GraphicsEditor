@@ -50,13 +50,13 @@ class GlobalElement {
         }
     }
     setEventListeners() {
-        this.selfElement.addEventListener('mousedown', this.onMouseDown);
-        this.selfElement.addEventListener('mousemove', this.onMove);
+        this.selfElement.addEventListener('mousedown', this.mouseDownHandler);
+        this.selfElement.addEventListener('mousemove', this.mouseMoveHandler);
         this.selfElement.addEventListener('mousemove', this.onResize);
-        this.selfElement.addEventListener('mouseup', this.onMouseUp);
+        this.selfElement.addEventListener('mouseup', this.mouseUpHandler);
         document.body.addEventListener('keypress', this.rotateTargetElement);
     }
-    onMouseDown = (event) => {
+    mouseDownHandler = (event) => {
         event.preventDefault();
         if (event.target.tagName !== 'IMG' && event.target.tagName !== 'CANVAS') {
             this.workspace.setTarget('none');
@@ -73,7 +73,7 @@ class GlobalElement {
             this.workspace.setTarget('none');
         }
     }
-    onMouseUp = (event) => {
+    mouseUpHandler = (event) => {
         event.preventDefault();
         if (event.x > this.workspace.selfElement.offsetLeft && event.x < this.workspace.selfElement.offsetLeft + this.workspace.selfElement.offsetWidth
             && event.y > this.workspace.selfElement.offsetTop && event.y < this.workspace.selfElement.offsetTop + this.workspace.selfElement.offsetHeight
@@ -95,15 +95,19 @@ class GlobalElement {
         this.target = undefined;
         this.resizingTarget = undefined;
     }
-    onMove = (event) => {
+    mouseMoveHandler = (event) => {
         event.preventDefault();
-        if (this.target && event.which === 1 && !this.target.isResizing) {
-            this.target.setMode('moving', true);
-            this.target.setIndents(
-                this.target.getIndents().left + event.movementX,
-                this.target.getIndents().top + event.movementY
-            );
-            this.target.setCursor('move');
+        if (this.target) {
+            if(event.which === 1 && !this.target.isResizing){
+                this.target.setMode('moving', true);
+                this.target.setIndents(
+                    this.target.getIndents().left + event.movementX,
+                    this.target.getIndents().top + event.movementY
+                );
+                this.target.setCursor('move');
+            } else {
+                this.target.setCursor('default');
+            }
         }
     }
     onResize = (event) => {
