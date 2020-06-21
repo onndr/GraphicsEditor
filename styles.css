@@ -7,14 +7,16 @@
 .workspace{
 	background-color: white; 
 	border: solid 3px red; 
-	min-width: 500px;
+	min-width: 400px;
+	margin-right: 5px;
 }
 
 .right{
 	display: grid;
+	gap: 5px;
 	grid-template-rows: 2.7fr 1fr;
-	grid-template-columns: 1fr;
-	margin: 0 0 0 5px;
+	grid-template-columns: 100%;
+	min-width: 100px;
 	justify-content: center;
 }
 
@@ -23,16 +25,19 @@
 	grid-template-columns: 1fr 1fr;
 	background-color: #f2d6a5; 
 	border: solid 3px red; 
-	min-width: 90px;
+	justify-items: center;
+	align-items: center;
+	min-width: fit-content;
 	min-height: 250px;
+	gap: 5px;
 }
 
 .bin{
 	display: flex;
-	margin: 5px 0 0 0;
 	justify-content: center;
 	border: solid 3px red; 
 	min-width: 90px;
+	min-height: 90px;
 }
 
 .bin img{
@@ -42,18 +47,19 @@
 
 .wrapperDiv{
 	display:inline-block;
-	margin: 10px;
 	border: 2px dashed;
 	max-width: 100px;
 	max-height: 100px;
-	min-width: 40px;
-	min-height: 40px;
+	min-width: 20px;
+	min-height: 20px;
 	height: fit-content;
 }
 
 .wrapperDiv img{
 	max-width: inherit;
 	max-height: inherit;
+	min-width: inherit;
+	min-height: inherit;
 	width: 100%;
 }
 
