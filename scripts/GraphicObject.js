@@ -10,7 +10,7 @@ class GraphicObject {
     focus = () => {
         this.isSelected = true;
         this.selfElement.isSelected = true;
-        this.selfElement.style.border = 'solid 2px red';
+        this.selfElement.style.border = 'solid 1px red';
     }
     unfocus() {
         this.isSelected = false;
