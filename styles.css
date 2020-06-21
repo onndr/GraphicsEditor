@@ -1,23 +1,21 @@
 .globalWrapper{
-	display: flex;
+	display: grid;
+	grid-template-columns: 6fr 1fr;
 	margin: 5px;
 }
 
 .workspace{
 	background-color: white; 
 	border: solid 3px red; 
-	flex: 6;
 	min-width: 500px;
 }
 
 .right{
-	flex: 1;
 	display: grid;
 	grid-template-rows: 2.7fr 1fr;
 	grid-template-columns: 1fr;
 	margin: 0 0 0 5px;
 	justify-content: center;
-	display: grid;
 }
 
 .generalContainer{
@@ -25,6 +23,8 @@
 	grid-template-columns: 1fr 1fr;
 	background-color: #f2d6a5; 
 	border: solid 3px red; 
+	min-width: 90px;
+	min-height: 250px;
 }
 
 .bin{
@@ -32,19 +32,29 @@
 	margin: 5px 0 0 0;
 	justify-content: center;
 	border: solid 3px red; 
+	min-width: 90px;
+}
+
+.bin img{
+	min-width: inherit;
+	min-height: inherit;
 }
 
 .wrapperDiv{
 	display:inline-block;
 	margin: 10px;
 	border: 2px dashed;
-	width: 100px;
-	height: 100px;
+	max-width: 100px;
+	max-height: 100px;
+	min-width: 40px;
+	min-height: 40px;
+	height: fit-content;
 }
 
-.wrappedImage{
-	width: inherit;
-	height: inherit;
+.wrapperDiv img{
+	max-width: inherit;
+	max-height: inherit;
+	width: 100%;
 }
 
 .currentTarget{
@@ -52,5 +62,9 @@
 	display: block;
 	width: 100px;
 	height: 100px;
-	border: 0.5px solid green;
+}
+
+.currentTarget img{
+	width: inherit;
+	height: inherit;
 }
