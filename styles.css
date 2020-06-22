@@ -14,7 +14,7 @@
 .right{
 	display: grid;
 	gap: 5px;
-	grid-template-rows: 2.7fr 1fr;
+	grid-template-rows: 2.5fr 1fr;
 	grid-template-columns: 100%;
 	min-width: 100px;
 	justify-content: center;
@@ -39,8 +39,11 @@
 }
 
 .bin img{
+	max-width: inherit;
+	max-height: inherit;
 	min-width: inherit;
 	min-height: inherit;
+	width: 100%;
 }
 
 .wrapperDiv{
