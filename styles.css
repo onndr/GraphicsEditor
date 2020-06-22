@@ -27,8 +27,6 @@
 	border: solid 3px red; 
 	justify-items: center;
 	align-items: center;
-	min-width: fit-content;
-	min-height: 250px;
 	gap: 5px;
 }
 
@@ -55,7 +53,7 @@
 	height: fit-content;
 }
 
-.wrapperDiv img{
+.wrapperDiv *{
 	max-width: inherit;
 	max-height: inherit;
 	min-width: inherit;
@@ -70,7 +68,7 @@
 	height: 100px;
 }
 
-.currentTarget img{
+.currentTarget *{
 	width: inherit;
 	height: inherit;
 }
